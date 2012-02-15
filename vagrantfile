@@ -1,0 +1,58 @@
+Vagrant::Config.run do |config|
+  #
+  # Every Vagrant virtual environment requires a box to build off of.
+  config.vm.box = "debian6-64"
+  #config.vm.box_url = "http://192.168.2.1/vagrant/debian6-64.box"
+  config.vbguest.iso_path = "/Applications/VirtualBox.app/Contents/MacOS/VBoxGuestAdditions.iso"
+
+  config.ssh.forward_agent
+
+  config.vm.customize [
+    "modifyvm", :id,
+    "--name", "Neo4j Heroku Challange",
+    "--memory", "1024"
+  ]
+
+  #Boot with a GUI so you can see the screen. (Default is headless)
+  config.vm.boot_mode = :gui
+
+  # Assign this VM to a host only network IP, allowing you to access it
+  # via the IP.
+  config.vm.network :hostonly, "10.11.4.3", {:netmask => "255.255.255.0"}
+
+  # Forward a port from the guest to the host, which allows for outside
+  # computers to access the VM, whereas host only networking does not.
+  #config.vm.forward_port "http", 80, 8080
+  #config.vm.forward_port "mysql", 3306, 33306
+
+  # Share an additional folder to the guest VM. The first argument is
+  # an identifier, the second is the path on the guest to mount the
+  # folder, and the third is the path on the host to the actual folder.
+  #config.vm.share_folder "mysql", "/media/sf_mysql", "database"
+
+  # Enable provisioning with chef solo, specifying a cookbooks path (relative
+  # to this Vagrantfile), and adding some recipes and/or roles.
+  #
+  config.vm.provision :chef_solo do |chef|
+    chef.log_level = :debug
+    chef.cookbooks_path = "~/Projects/Cookbooks/flattr"
+    chef.add_recipe "build-essential"
+    chef.add_recipe "git"
+    chef.add_recipe "vim"
+    chef.add_recipe "unzip"
+    chef.add_recipe "gettext"
+    chef.add_recipe "openssl"
+    chef.add_recipe "nginx"
+    chef.add_recipe "multitail"
+    chef.add_recipe "zsh"
+    chef.add_recipe "pv"
+
+    # You may also specify custom JSON attributes:
+    chef.json = {
+      :zsh => {
+        :enable_for => ["vagrant"]
+      }
+    }
+  end
+
+end
