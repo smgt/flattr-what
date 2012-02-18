@@ -1,10 +1,20 @@
 GEM
   remote: http://rubygems.org/
   specs:
+    addressable (2.2.7)
     crack (0.1.8)
+    faraday (0.7.6)
+      addressable (~> 2.2)
+      multipart-post (~> 1.1)
+      rack (~> 1.1)
+    flattr (0.2.3)
+      faraday
+      multi_json
     httparty (0.7.8)
       crack (= 0.1.8)
     json (1.6.5)
+    multi_json (1.0.4)
+    multipart-post (1.1.5)
     neography (0.0.22)
       httparty (~> 0.7.8)
       json
@@ -27,5 +37,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  flattr
   neography
   sinatra
