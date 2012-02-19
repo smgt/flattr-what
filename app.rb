@@ -120,12 +120,6 @@ class App < Sinatra::Base
     erb :index
   end
 
-  get "/add_to_index/:id" do
-    g = Graph.new
-    g.add_to_index params[:id], "name"
-    return "OK i guess"
-  end
-
   get "/node/:id" do
     g = Graph.new
     n = g.get_node params[:id]
