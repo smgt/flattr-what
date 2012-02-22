@@ -48,11 +48,40 @@ class App < Sinatra::Base
 
   post "/fetch/user" do
     g = Graph.new
-    user_node = g.get_user params[:username]
-    if !user_node || params[:force_refresh]
-      result = g.create_user params[:username]
-      if result
-        puts "Creating new user #{params[:username]}"
+    user = g.get_user params[:username]
+    if !user || params[:force_refresh]
+
+      user = g.create_user params[:username]
+
+      if user
+        f = Flattr.new
+
+        things = f.user_things(params[:username], {:count => 50})
+
+        user_thing_relations = 0
+        things.each do |thing|
+          user_thing_relations = user_thing_relations + 1
+          thing = g.create_thing(thing.id)
+          g.create_relationship("owner", thing.node, user.node)
+          g.create_relationship("owner", user.node, thing.node)
+        end
+
+        flattr_relations = 0
+        flattrings = f.user_flattrs(params[:username], {:full => "full", :count => 50})
+        flattrings.each do |click|
+          unless click["thing"]
+            puts "click har ju for fan ingen hing: #{click.inspect}"
+          end
+          thing = g.create_thing(click["thing"]["id"], Flattr::Thing.new(click["thing"]))
+          if thing
+            flattr_relations = flattr_relations + 1
+            g.create_relationship("flattred", user.node, thing.node)
+            g.create_relationship("flattred_by", thing.node, user.node)
+          end
+        end
+
+        puts "Created new user #{params[:username]} with #{user_thing_relations} "+
+             "relations and #{flattr_relations} flattrings"
         redirect to "/user/#{params[:username]}"
       else
         return "ERROR"

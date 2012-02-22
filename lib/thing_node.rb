@@ -2,9 +2,10 @@ class ThingNode
   attr_reader :id, :node_id
 
   def initialize(node)
-    data = node.first["data"]
-    @id = data["thing_id"]
-    @node_id = node.first['self'].split("/").last
+    data = node["data"]
+    @id = data["thing_id"].to_i
+    @node_id = node['self'].split("/").last
+    @node = node
     @thing_data = false
   end
 
@@ -16,6 +17,10 @@ class ThingNode
   def relations(direction=:all)
     g = Graph.new
     g.fetch_relationships @node, direction.to_s
+  end
+
+  def node
+    @node
   end
 
 end
