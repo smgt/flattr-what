@@ -1,7 +1,4 @@
 <h1><%= user.data.username %></h1>
-<pre><code><%= user.node.inspect %></code></pre>
-<pre>
-<code>
-<%= user.relations(:in).inspect %>
-</code>
-</pre>
+<% things.each do |thing| %>
+  <a href="http://flattr.com/t/<%= thing.first %>"><%= thing[1]%></a><br/>
+<% end %>
