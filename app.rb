@@ -8,9 +8,9 @@ require './lib/scrape'
 require './lib/user_node'
 require './lib/thing_node'
 
-Flattr.configure do |config|
-  config.endpoint = "https://api.flattr.dev/"
-end
+# Flattr.configure do |config|
+#   config.endpoint = "https://api.flattr.dev/"
+# end
 
 class App < Sinatra::Base
 
