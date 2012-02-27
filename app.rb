@@ -8,16 +8,24 @@ require './lib/scrape'
 require './lib/user_node'
 require './lib/thing_node'
 
-# Flattr.configure do |config|
-#   config.endpoint = "https://api.flattr.dev/"
-# end
+
 
 class App < Sinatra::Base
+
+  if development?
+    Flattr.configure do |config|
+      config.endpoint = "https://api.flattr.dev/"
+    end
+  end
+
+  not_found do
+    erb :not_found
+  end
+
 
   layout :default
 
   get "/" do
-    n = Graph.new
     erb :index
   end
 
@@ -30,7 +38,8 @@ class App < Sinatra::Base
   get "/user/:username" do
     g = Graph.new
     user = g.get_user params[:username]
-    r = g.cypher("START root_user = node(#{user.node_id}) MATCH root_user-[:flattr]->()<-[:flattr]-user-[:flattr]->things WHERE not(root_user-->things) RETURN things.thing_id, things.title, count(*) AS count ORDER BY count DESC")
+    halt 404, params[:username] if user.nil?
+    r = g.cypher("START root_user = node(#{user.node_id}) MATCH root_user-[:flattr]->()<-[:flattr]-user-[:flattr]->things WHERE not(root_user-->things) RETURN things.thing_id, things.title, count(*) AS count ORDER BY count DESC LIMIT 10")
     things = r["data"]
     erb :user, :locals => { :user => user, :r => r, :things => things }
   end
@@ -55,7 +64,7 @@ class App < Sinatra::Base
   post "/fetch/user" do
     g = Graph.new
     user = g.get_user params[:username]
-    if !user || params[:force_refresh]
+    if !user || params[:force_refresh] #|| user.age > 2.hours
 
       Scrape.user params[:username], 2
 
@@ -112,5 +121,6 @@ class App < Sinatra::Base
       return "ERROR"
     end
   end
+
 
 end
