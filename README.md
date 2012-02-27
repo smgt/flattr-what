@@ -16,18 +16,18 @@ In this application we are using Neo4j as a backend. Neo4j is a [graph database]
 
 To get hold of the source code and setup you will need Ruby and a Neo4j database runninng.
 
-1. `git clone git://github.com/simon/neo4j-challange.git`
-2. `cd neo4j-challange`
+1. `git clone git://github.com/simon/flattr-what.git`
+2. `cd flattr-what`
 3. `bundle install`
 4. `foreman start`
 5. Point your browser to [http://localhost:9292](http://localhost:9292)
 
-### Scraper
+### Scrape data and insert to Neo4j
 
 The application don't automatically fetch all data from Flattr instead it fetches data when a username is requested. Then the application will walk through that users flattrs and parse the things and walk the other users that have flattred that specific thing. All gets saved into the Neo4j database.
 
 In the end it will look like this.
-![](https://img.skitch.com/20120227-xtafs11pdktbas282yawwqh4ct.png)
+![Neo4j admin](https://img.skitch.com/20120227-xtafs11pdktbas282yawwqh4ct.png)
 
 ### Query Neo4j with Cyper
 
