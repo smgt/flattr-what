@@ -1,27 +1,21 @@
 <html>
   <head>
-    <title>Flattr Neo4j</title>
-    <!-- link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" -->
-    <link rel="stylesheet" type="text/css" href="http://twitter.github.com/bootstrap/assets/css/bootstrap.css">
+    <title>Flattr What?</title>
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="/css/application.css">
     <script type="text/javascript" src="/js/jquery.min.js"></script>
-    <!--script type="text/javascript" src="/js/bootstrap.min.js"></script -->
+    <script type="text/javascript" src="/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="/js/application.js"></script>
   </head>
   <body>
-    <header class="navbar navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="container">
-          <ul class="nav">
-            <li></li>
-            <li><a href="/">index</a></li>
-          </ul>
-
-        </div>
-      </div>
-    </header>
     <div class="container">
-        <%= yield %>
+      <div class="page-header">
+        <h1><a href="/">Flattr What?</a><small>Get recommended what other things you might like on <a href="http://flattr.com">flattr.com</a></small></h1>
+      </div>
+      <%= yield %>
+      <div class="container footer">
+        <small>Made by <a href="http://github.com/simon">simon</a> and <a href="http://github.com/qzio">qzio</a>. The code is available over at <a href="https://github.com/simon/neo4j-challange">github</a>.</small>
+      </div>
     </div>
   </body>
 </html>

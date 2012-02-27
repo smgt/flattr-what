@@ -1,17 +1,7 @@
-<div class="row">
-  <div class="span12">
-    <form method="post" action="/fetch/user" class="well form-inline">
-
-      <label>Username</label>
-      <input type="text" name="username" class="span3" placeholder="Your username...">
-      force-refresh: <input type="checkbox" name="force_refresh">
-      <div class="actions">
-        <button type="submit" class="btn">Submit</button>
-      </div>
+<div class="row searchbox">
+    <form method="post" action="/fetch/user" class="form-search">
+      <input type="text" name="username" class="span5 search-query" placeholder="Enter a flattr username...">
+      <!--<input type="checkbox" name="force_refresh">-->
+      <button type="submit" class="btn">Find...</button>
     </form>
-
-
-    <input type="text" name="foo"/>
-  </div>
-
 </div>

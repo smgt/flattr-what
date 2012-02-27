@@ -1,3 +1,30 @@
-body > .container {
-  padding-top: 60px;
+/* body > .container { */
+/*   padding-top: 60px; */
+/* } */
+
+/* h1 { */
+/*   font-size: 4em; */
+/* } */
+
+input {
+  height: 30px;
+}
+
+.footer,
+.searchbox {
+  text-align: center;
+  margin-top: 3em;
+}
+
+.footer {
+  color: #999;
+}
+
+.footer a {
+  color: #999;
+  text-decoration: underline;
+}
+
+.footer a:hover {
+  color: #08c;
 }

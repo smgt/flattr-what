@@ -1,4 +1,14 @@
-<h1><%= user.data.username %></h1>
-<% things.each do |thing| %>
-  <a href="http://flattr.com/t/<%= thing.first %>"><%= thing[1]%></a><br/>
+<h3>We have peeped into our crystal ball and we think that these things will interest <a href="http://flattr.com/profile/<%= user.data.username %>"><%= user.data.username %></a>.</h3>
+<% if things.size > 0 %>
+<p>
+  <ol>
+    <% things.each do |thing| %>
+      <li><a href="http://flattr.com/t/<%= thing.first %>"><%= thing[1]%></a></li>
+    <% end %>
+  </ol>
+</p>
+<% else %>
+  <p>
+    And... it... seems... nothing is interesting <%= user.data.username %>...
+  </p>
 <% end %>
