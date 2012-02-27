@@ -41,8 +41,6 @@ class Populator
       flattred_things = self.scrape_things_flattred_by username
 
       self.scrape_users_by_flattred_things flattred_things
-
-
     end
 
     def scrape_users_by_flattred_things flattred_things
