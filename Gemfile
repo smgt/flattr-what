@@ -6,3 +6,5 @@ gem "flattr"
 gem "foreman"
 gem "thin"
 gem "shotgun"
+group :development do
+end
