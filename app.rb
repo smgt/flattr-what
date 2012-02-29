@@ -24,6 +24,10 @@ class App < Sinatra::Base
     erb :about
   end
 
+  get "/qustatus" do
+    erb :qustatus
+  end
+
   get "/user/:username" do
     g = Graph.new
     user = g.get_user params[:username]
