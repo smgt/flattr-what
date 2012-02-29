@@ -9,12 +9,6 @@ require './lib/thing_node'
 
 class App < Sinatra::Base
 
-  if development?
-    Flattr.configure do |config|
-      config.endpoint = "https://api.flattr.dev/"
-    end
-  end
-
   not_found do
     erb :not_found
   end
