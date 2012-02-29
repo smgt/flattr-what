@@ -35,6 +35,10 @@ class App < Sinatra::Base
     erb :node, :locals => {:node => n}
   end
 
+  get "/about" do
+    erb :about
+  end
+
   get "/user/:username" do
     g = Graph.new
     user = g.get_user params[:username]

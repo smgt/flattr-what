@@ -12,11 +12,11 @@
   <body>
     <div class="container">
       <div class="page-header">
-        <h1><a href="/">Flattr What?</a><small>Get recommended what other things you might like on <a href="http://flattr.com">flattr.com</a></small></h1>
+        <h1><a href="/">Flattr What?</a><small>Get recommended what other things you might like on <a href="http://flattr.com">flattr.com</a> (this is an pre-alpha)</small></h1>
       </div>
       <%= yield %>
       <div class="container footer">
-        <small>Made by <a href="http://github.com/simon">simon</a> and <a href="http://github.com/qzio">qzio</a>. The code is available over at <a href="https://github.com/simon/neo4j-challange">github</a>.</small>
+        <small>Made by <a href="http://github.com/simon">simon</a> and <a href="http://github.com/qzio">qzio</a>. The code is available over at <a href="https://github.com/simon/flattr-what">github</a>. Read more <a href="/about">about the project.</a></small>
       </div>
     </div>
 
@@ -29,6 +29,20 @@
     </div>
   </body>
 
+    <script type="text/javascript">
+      /* <![CDATA[ */
+    (function() {
+     var s = document.createElement('script');
+     var t = document.getElementsByTagName('script')[0];
+
+     s.type = 'text/javascript';
+     s.async = true;
+     s.src = 'http://api.flattr.com/js/0.6/load.js?mode=auto';
+
+     t.parentNode.insertBefore(s, t);
+     })();
+  /* ]]> */
+</script>
   <script type="text/javascript">
     var _gauges = _gauges || [];
     (function() {
