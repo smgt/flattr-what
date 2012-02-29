@@ -12,9 +12,9 @@ In this application we are using Neo4j as a backend. Neo4j is a [graph database]
 
 ## How it works
 
-### Setup the code
+### Setup
 
-To get hold of the source code and setup you will need Ruby and a Neo4j database runninng.
+To get hold of the source code and setup you will need Ruby, Neo4j and Redis running.
 
 1. `git clone git://github.com/simon/flattr-what.git`
 2. `cd flattr-what`
