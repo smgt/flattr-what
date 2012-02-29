@@ -5,6 +5,7 @@
     <link rel="stylesheet" type="text/css" href="/css/application.css">
     <script type="text/javascript" src="/js/jquery.min.js"></script>
     <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/js/spin.min.js"></script>
     <script type="text/javascript" src="/js/application.js"></script>
   </head>
   <body>
@@ -15,6 +16,14 @@
       <%= yield %>
       <div class="container footer">
         <small>Made by <a href="http://github.com/simon">simon</a> and <a href="http://github.com/qzio">qzio</a>. The code is available over at <a href="https://github.com/simon/neo4j-challange">github</a>.</small>
+      </div>
+    </div>
+
+    <div class="modal fade" id="myModal" style="display:none;">
+      <div class="modal-body">
+        <h2>Fetching information from cyperspace...</h2>
+        <div class="modal-spinner">
+        </div>
       </div>
     </div>
   </body>

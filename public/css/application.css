@@ -28,3 +28,10 @@ input {
 .footer a:hover {
   color: #08c;
 }
+
+.modal-spinner {
+  padding: 100px 0;
+}
+.spinner {
+  width: 200px;
+}
