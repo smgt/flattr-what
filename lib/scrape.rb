@@ -29,10 +29,9 @@ class Scrape
       # Update last time a user was scraped
       graph.set_node_properties(g_user.node, {"scraped_at" => Time.now.to_i})
 
-      puts "set node property scrape_at #{g_user.node['data']['scraped_at']}"
-
       puts "Scrape.user:: Created graph node for #{username}"
 
+      # Fetch the users things and create a owner relation
       f_user_things = flattr.user_things(username, :count => 30)
       f_user_things.each do |thing|
         g_thing = graph.create_or_update_thing(thing.id, thing)
