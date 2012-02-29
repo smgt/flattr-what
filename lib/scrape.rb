@@ -8,7 +8,7 @@ class Scrape
 
       # Check if the flattr user exists
       f_user = flattr.user(username)
-      return nil unless f_user
+      return nil unless f_user[:error]
 
       puts "Scrape.user:: Flattr user #{username} exists"
 

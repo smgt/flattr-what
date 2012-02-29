@@ -67,7 +67,6 @@ class App < Sinatra::Base
 
   post "/fetch/user" do
     g = Graph.new
-    #user = g.get_user params[:username]
     Scrape.user params[:username]
     puts "Scraped user #{params[:username]}"
     redirect to "/user/#{params[:username]}"
