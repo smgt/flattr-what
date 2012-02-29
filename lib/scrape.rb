@@ -66,7 +66,7 @@ class Scrape
         if f_thing_flattrs #&& f_thing_flattrs['error'].nil?
           puts "Found #{f_thing_flattrs.size} flattrs..."
           f_thing_flattrs.each do |flattr|
-            if !flattr['owner'].nil? && !flattr['owner']['username'].nil?
+            if flattr['owner'] && flattr['owner']['username']
               g_user = graph.create_or_update_user(flattr['owner']['username'])
               if g_user
                 graph.create_relationship('flattr', g_user.node, thing_node.node)
