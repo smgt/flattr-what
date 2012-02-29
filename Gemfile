@@ -6,8 +6,9 @@ gem "sinatra"
 gem "neography"
 gem "flattr"
 gem "qu-redis"
+gem "thin"
+
 group :development do
   gem "foreman"
-  gem "thin"
   gem "shotgun"
 end
