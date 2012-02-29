@@ -5,6 +5,7 @@ gem "rack-timeout"
 gem "sinatra"
 gem "neography"
 gem "flattr"
+gem "qu-redis"
 group :development do
   gem "foreman"
   gem "thin"

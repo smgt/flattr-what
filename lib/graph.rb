@@ -1,3 +1,7 @@
+require "neography"
+require "./lib/user_node"
+require "./lib/thing_node"
+
 class Graph
 
   attr_reader :neo

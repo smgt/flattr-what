@@ -1,14 +1,20 @@
+require "flattr"
+require "./lib/graph"
+
 class Scrape
 
   class << self
 
     def user(username)
+
+      puts "Scraping.user:: #{username}"
+
       flattr = Flattr.new
       graph = Graph.new
 
       # Check if the flattr user exists
       f_user = flattr.user(username)
-      return nil unless f_user[:error]
+      return nil if f_user.username.nil?
 
       puts "Scrape.user:: Flattr user #{username} exists"
 
@@ -17,7 +23,7 @@ class Scrape
       return nil unless g_user
 
       # Dont scrape if users flattrs have been recently scrapted 
-      puts "will check g_user.scrape?:continue?(#{g_user.scrape?})"
+      puts "Scrape.user:: Should we scrape #{username}? (#{g_user.scrape?})"
       return nil unless g_user.scrape?
 
       # Update last time a user was scraped
@@ -72,6 +78,11 @@ class Scrape
 
 
       return true
+    end
+
+    def perform(username)
+      puts "Adding scrape job to queue: #{username}"
+      user(username)
     end
 
   end

@@ -1,14 +1,11 @@
 require "rubygems"
 require "sinatra/base"
-require "neography"
-require "flattr"
+require "qu-redis"
 
 require './lib/graph'
 require './lib/scrape'
 require './lib/user_node'
 require './lib/thing_node'
-
-
 
 class App < Sinatra::Base
 
@@ -29,12 +26,6 @@ class App < Sinatra::Base
     erb :index
   end
 
-  get "/node/:id" do
-    g = Graph.new
-    n = g.get_node params[:id]
-    erb :node, :locals => {:node => n}
-  end
-
   get "/about" do
     erb :about
   end
@@ -48,39 +39,27 @@ class App < Sinatra::Base
     erb :user, :locals => { :user => user, :r => r, :things => things }
   end
 
-  get "/thing/:id" do
-    g = Graph.new
-    thing = g.get_thing params[:id]
-    redirect to "/fetch/thing/#{params[:id]}" if thing.nil?
-    erb :thing, :locals => { :thing => thing }
-  end
-
-  get "/fetch/thing/:id" do
-    g = Graph.new
-    result = g.create_or_update_thing params[:id]
-    if result
-      redirect to "/thing/#{params[:id]}"
-    else
-      return "ERROR"
-    end
-  end
-
   post "/fetch/user" do
-    g = Graph.new
-    Scrape.user params[:username]
-    puts "Scraped user #{params[:username]}"
-    redirect to "/user/#{params[:username]}"
-  end
 
-  get "/fetch/user/:username" do
     g = Graph.new
-    result = g.create_user params[:username]
-    if result
+    f = Flattr.new
+    user_node = g.get_user(params[:username])
+    if user_node
+      Qu.enqueue Scrape, params[:username]
       redirect to "/user/#{params[:username]}"
     else
-      return "ERROR"
+      user = f.user(params[:username])
+      if user.username.nil?
+        halt 404
+      else
+        Qu.enqueue Scrape, params[:username]
+        redirect to "/scraping/#{params[:username]}"
+      end
     end
   end
 
+  get "/scraping/:username" do
+    erb :scraping, :locals => {:username => params[:username]}
+  end
 
 end
