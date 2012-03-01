@@ -1,3 +1,4 @@
+<!DOCTYPE HTML>
 <html>
   <head>
     <title>Flattr What?</title>
@@ -8,6 +9,20 @@
     <script type="text/javascript" src="/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="/js/spin.min.js"></script>
     <script type="text/javascript" src="/js/application.js"></script>
+<script type="text/javascript">
+  /* <![CDATA[ */
+(function() {
+ var s = document.createElement('script');
+ var t = document.getElementsByTagName('script')[0];
+
+ s.type = 'text/javascript';
+ s.async = true;
+ s.src = 'http://api.flattr.com/js/0.6/load.js?mode=auto';
+
+ t.parentNode.insertBefore(s, t);
+ })();
+/* ]]> */
+</script>
   </head>
   <body>
     <div class="container">
@@ -19,7 +34,6 @@
         <small>Made by <a href="http://github.com/simon">simon</a> and <a href="http://github.com/qzio">qzio</a>. The code is available over at <a href="https://github.com/simon/flattr-what">github</a>. Read more <a href="/about">about the project.</a>. This is a proof-of-concept application and is not affiliated with <a href="http://flattr.com">Flattr</a>.</small>
       </div>
     </div>
-
     <div class="modal fade" id="myModal" style="display:none;">
       <div class="modal-body">
         <h2>Fetching information from cyperspace...</h2>
@@ -29,31 +43,18 @@
     </div>
   </body>
 
-    <script type="text/javascript">
-      /* <![CDATA[ */
-    (function() {
-     var s = document.createElement('script');
-     var t = document.getElementsByTagName('script')[0];
 
-     s.type = 'text/javascript';
-     s.async = true;
-     s.src = 'http://api.flattr.com/js/0.6/load.js?mode=auto';
-
-     t.parentNode.insertBefore(s, t);
-     })();
-  /* ]]> */
-</script>
-  <script type="text/javascript">
-    var _gauges = _gauges || [];
-    (function() {
-     var t   = document.createElement('script');
-     t.type  = 'text/javascript';
-     t.async = true;
-     t.id    = 'gauges-tracker';
-     t.setAttribute('data-site-id', '4f4e0849844d523803000163');
-     t.src = '//secure.gaug.es/track.js';
-     var s = document.getElementsByTagName('script')[0];
-     s.parentNode.insertBefore(t, s);
-     })();
+<script type="text/javascript">
+  var _gauges = _gauges || [];
+  (function() {
+   var t   = document.createElement('script');
+   t.type  = 'text/javascript';
+   t.async = true;
+   t.id    = 'gauges-tracker';
+   t.setAttribute('data-site-id', '4f4e0849844d523803000163');
+   t.src = '//secure.gaug.es/track.js';
+   var s = document.getElementsByTagName('script')[0];
+   s.parentNode.insertBefore(t, s);
+   })();
 </script>
 </html>

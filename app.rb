@@ -30,10 +30,11 @@ class App < Sinatra::Base
 
   get "/user/:username" do
     g = Graph.new
+    f = Flattr.new
     user = g.get_user params[:username]
     halt 404, params[:username] if user.nil?
-    r = g.cypher("START root_user = node(#{user.node_id}) MATCH root_user-[:flattr]->()<-[:flattr]-user-[:flattr]->things WHERE not(root_user-->things) RETURN things.thing_id, things.title, count(*) AS count ORDER BY count DESC LIMIT 10")
-    things = r["data"]
+    r = g.cypher("START root_user = node(#{user.node_id}) MATCH root_user-[:flattr]->()<-[:flattr]-user-[:flattr]->things WHERE not(root_user-->things) AND not(root_user<-[:owner]-things) RETURN things.thing_id, things.title, count(*) AS count ORDER BY count DESC LIMIT 20")
+    things = Flattr.get("/rest/v2/things/#{r['data'].collect{ |t| t.first }.join(",")}")
     erb :user, :locals => { :user => user, :r => r, :things => things }
   end
 

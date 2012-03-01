@@ -1,12 +1,28 @@
 <h3>We have peeped into our crystal ball and we think that these things will interest <a href="http://flattr.com/profile/<%= user.data.username %>"><%= user.data.username %></a>.</h3>
 <% if things.size > 0 %>
-<p>
-  <ol>
-    <% things.each do |thing| %>
-      <li><a href="http://flattr.com/t/<%= thing.first %>"><%= thing[1]%></a></li>
-    <% end %>
-  </ol>
-</p>
+<div class="row span12">
+  <% things.each do |thing| %>
+<div class="thing">
+   <div class="img">
+    <div class="info">
+      <a href="<%= thing['url'] %>"><%= thing['title'] %></a><br/>
+      <em>by <a href="http://flattr.com/profile/<%= thing['owner']['username']%>"> <%= thing['owner']['username'] %></a></em>
+    </div>
+      <a href="<%= thing['url'] %>">
+        <div class="image-wrapper">
+          <img src="<%= thing['image'].gsub("medium", "huge") %>">
+        </div>
+        </a>
+        <a class="FlattrButton" style="display:none;"
+        title="<%= thing['title'] %>"
+        data-flattr-uid="<%= thing['owner']['username'] %>"
+        data-flattr-button="button"
+        href="<%= thing['url']%>">
+      </a>
+    </div>
+</div>
+  <% end %>
+</div>
 <% else %>
   <p>
     And... it... seems... nothing is interesting <%= user.data.username %>...
