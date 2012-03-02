@@ -24,6 +24,10 @@ class App < Sinatra::Base
     erb :about
   end
 
+  get "/help" do
+    erb :help
+  end
+
   get "/qustatus" do
     erb :qustatus
   end
